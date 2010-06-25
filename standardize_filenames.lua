@@ -15,15 +15,14 @@
 require "achievement_strings"
 
 function pathtosvg(subdir,presvg)
-  return string.format("square/%s/%s.svg",subdir,presvg)
+  return string.format("%s/%s.svg",subdir,presvg)
 end
 
 function rename(subdir,orig,new)
-  local origname=pathtosvg(subdir,orig)
-  local newname=pathtosvg(subdir,new)
-  assert(os.rename(origname,newname))
-  os.execute(string.format("bzr mv --after %s %s\n",
-    origname, newname))
+  local origname=pathtosvg("incoming",orig)
+  local newname=pathtosvg("square/"..subdir,new)
+  local success,message= os.rename(origname,newname)
+  if not success then print(message) end
 end
 
 ---[=[ Medic ------
@@ -47,7 +46,7 @@ end
 
 ---]=]-------------
 
----[=[ Pyro -------
+--[=[ Pyro -------
 -- All 38 Pyro pack images are 512 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.pyro) do
@@ -80,7 +79,7 @@ end
 
 ---]=]-------------
 
----[=[ Heavy ------
+--[=[ Heavy ------
 -- All 38 Heavy pack images are 512 square pixel images of the "png" extension.
 
 for token in pairs(tf.heavy) do
@@ -90,7 +89,7 @@ end
 
 ---]=]-------------
 
----[=[ Scout ------
+--[=[ Scout ------
 -- All 38 Scout pack images are of the "png" extension.
 -- Dimensions range from 512 pixels square to as large as 519x516 pixels
 -- ("side_retired.png").
@@ -126,7 +125,7 @@ end
 
 ---]=]-------------
 
----[=[ Sniper -----
+--[=[ Sniper -----
 -- All 35 Sniper pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.sniper) do
@@ -163,7 +162,7 @@ end
 
 ---]=]-------------
 
----[=[ Spy --------
+--[=[ Spy --------
 -- All 34 Spy pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.spy) do
@@ -198,7 +197,7 @@ end
 
 ---]=]-------------
 
----[=[ Soldier ----
+--[=[ Soldier ----
 -- All 38 Soldier pack images are 512 square pixel images of the "jpg" extension.
 
 do
@@ -262,7 +261,7 @@ end
 
 ---]=]-------------
 
----[=[ Demoman ----
+--[=[ Demoman ----
 -- All 38 Demoman pack images are 512 square pixel images of the "tga" extension.
 
 for token in pairs(tf.demoman) do
