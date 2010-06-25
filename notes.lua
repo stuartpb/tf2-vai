@@ -82,5 +82,38 @@ tweaks={
     tf_heavy_uncover_spies={
       colors=2},
   },
+  scout={
+    artful_dodger={
+      colors=2},
+    block_the_plate={
+      zap="Top of fold in hand that's a lighter gray in the original",
+      smooth="Bottom-left of middle ring on plate"},
+    brushback={
+      merge="Bottom of bottom rivet on bomb casing"},
+    caught_napping={
+      colors=2},
+    doctoring_the_ball={
+      create="Right eye",
+      merge="Top of glow"},
+    first_blood={
+      merge="Lightning above head"},
+    gun_down={
+      colors=2},
+    if_you_build_it={
+      colors=2},
+    im_bat_man={
+      colors=2},
+    race_for_the_pennant={
+      colors=4},
+      round_tripper={
+      colors=2},
+    set_the_table={
+      colors=5},
+    triple_play={
+      colors=4},
+    triple_steal={
+      colors=2},
+
+
 }
 --CHECK SHAPE MODE IN EXPORT OPTIONS BEFORE SAVING!

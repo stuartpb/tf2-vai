@@ -89,7 +89,7 @@ end
 
 ---]=]-------------
 
---[=[ Scout ------
+---[=[ Scout ------
 -- All 38 Scout pack images are of the "png" extension.
 -- Dimensions range from 512 pixels square to as large as 519x516 pixels
 -- ("side_retired.png").
