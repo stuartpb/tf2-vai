@@ -25,7 +25,7 @@ function rename(subdir,orig,new)
   if not success then print(message) end
 end
 
----[=[ Medic ------
+--[=[ Medic ------
 -- All 36 Medic pack images are 422 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.medic) do
@@ -46,7 +46,7 @@ end
 
 ---]=]-------------
 
---[=[ Pyro -------
+---[=[ Pyro -------
 -- All 38 Pyro pack images are 512 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.pyro) do
