@@ -46,7 +46,7 @@ end
 
 ---]=]-------------
 
----[=[ Pyro -------
+--[=[ Pyro -------
 -- All 38 Pyro pack images are 512 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.pyro) do
@@ -79,7 +79,7 @@ end
 
 ---]=]-------------
 
---[=[ Heavy ------
+---[=[ Heavy ------
 -- All 38 Heavy pack images are 512 square pixel images of the "png" extension.
 
 for token in pairs(tf.heavy) do
