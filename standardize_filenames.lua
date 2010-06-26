@@ -125,7 +125,7 @@ end
 
 ---]=]-------------
 
----[=[ Sniper -----
+--[=[ Sniper -----
 -- All 35 Sniper pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.sniper) do
@@ -162,7 +162,7 @@ end
 
 ---]=]-------------
 
---[=[ Spy --------
+---[=[ Spy --------
 -- All 34 Spy pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.spy) do
