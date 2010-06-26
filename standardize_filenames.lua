@@ -162,7 +162,7 @@ end
 
 ---]=]-------------
 
----[=[ Spy --------
+--[=[ Spy --------
 -- All 34 Spy pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.spy) do
@@ -197,7 +197,7 @@ end
 
 ---]=]-------------
 
---[=[ Soldier ----
+---[=[ Soldier ----
 -- All 38 Soldier pack images are 512 square pixel images of the "jpg" extension.
 
 do
