@@ -79,7 +79,7 @@ end
 
 ---]=]-------------
 
----[=[ Heavy ------
+--[=[ Heavy ------
 -- All 38 Heavy pack images are 512 square pixel images of the "png" extension.
 
 for token in pairs(tf.heavy) do
@@ -89,7 +89,7 @@ end
 
 ---]=]-------------
 
----[=[ Scout ------
+--[=[ Scout ------
 -- All 38 Scout pack images are of the "png" extension.
 -- Dimensions range from 512 pixels square to as large as 519x516 pixels
 -- ("side_retired.png").
@@ -125,7 +125,7 @@ end
 
 ---]=]-------------
 
---[=[ Sniper -----
+---[=[ Sniper -----
 -- All 35 Sniper pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.sniper) do
