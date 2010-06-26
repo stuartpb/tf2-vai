@@ -197,7 +197,7 @@ end
 
 ---]=]-------------
 
----[=[ Soldier ----
+--[=[ Soldier ----
 -- All 38 Soldier pack images are 512 square pixel images of the "jpg" extension.
 
 do
@@ -261,7 +261,7 @@ end
 
 ---]=]-------------
 
---[=[ Demoman ----
+---[=[ Demoman ----
 -- All 38 Demoman pack images are 512 square pixel images of the "tga" extension.
 
 for token in pairs(tf.demoman) do

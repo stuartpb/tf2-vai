@@ -57,8 +57,6 @@ tweaks={
       colors=2},
     tf_heavy_clear_stickybombs={
       zap="Middle and bottom spikes on right side"},
-    tf_heavy_clear_stickybombs={
-      zap="Middle and bottom spikes on right side"},
     tf_heavy_defend_medic={
       colors=2},
     tf_heavy_eat_sandwiches={
@@ -325,6 +323,32 @@ tweaks={
     tf_soldier_worth_a_thousand_wars={
   },
   demoman={
+    tf_demo_achieve_progress2={
+      zap="Bottom of middle balloon string"},
+    tf_demoman_bounce_and_kill={
+      zap="Inside of left burst's top ray"},
+    tf_demoman_charge_kill={
+      create="lines on right side of targe, line in upper left"},
+    tf_demoman_decapitate_nemesis={
+      create="line to right on hilt"},
+    tf_demoman_decapitate_players={
+      fill="Right side of Scout neck"},
+    tf_demoman_destroy_buildings_with_medic={
+      colors=2},
+    tf_demoman_destroy_x_stickybombs={
+      zap="Middle and bottom spikes on right side"},
+    tf_demoman_freezecam_smile={
+      colors=2},
+    tf_demoman_kill_x_defending={
+      colors=2},
+    tf_demoman_taunt_kill={
+      colors=2},
+    tf_demoman_kill_player_after_tp={
+      smooth="tip of top-right spike"},
+    tf_demoman_kill_two_during_stickyjump={
+      zap="Inside of left burst's top ray"},
+    tf_demoman_killxsappingspies={
+      merge="bottom-right corner"},
   },
 }
 --CHECK SHAPE MODE IN EXPORT OPTIONS BEFORE SAVING!
