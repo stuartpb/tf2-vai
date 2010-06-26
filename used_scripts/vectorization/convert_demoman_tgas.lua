@@ -1,4 +1,4 @@
-require "achievement_strings"
+require "data.achievements"
 require "imlua"
 
 function convert(filename)

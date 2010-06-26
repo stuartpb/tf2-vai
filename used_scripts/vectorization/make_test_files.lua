@@ -1,3 +1,6 @@
+--Used to create empty files with identical filenames
+--to test filename standardization script.
+
 require "lfs"
 
 for dirname in lfs.dir'square' do

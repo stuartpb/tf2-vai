@@ -12,20 +12,12 @@
 --to SVG, this is ignored.
 
 --This gets the "tf" table of achievement names.
-require "achievement_strings"
+require "data.achievements"
 
-function pathtosvg(subdir,presvg)
-  return string.format("%s/%s.svg",subdir,presvg)
-end
+pingunames={}
+local mappings={}
 
-function rename(subdir,orig,new)
-  local origname=pathtosvg("incoming",orig)
-  local newname=pathtosvg("square/"..subdir,new)
-  local success,message= os.rename(origname,newname)
-  if not success then print(message) end
-end
-
---[=[ Medic ------
+---[=[ Medic ------
 -- All 36 Medic pack images are 422 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.medic) do
@@ -39,14 +31,15 @@ for token,ach in pairs(tf.medic) do
     --Remove all non-alphanumeric characters (a couple apostrophes and a comma)
     orig=string.gsub(orig,'%W','')
 
-    --Rename the file at this position to its token
-    rename('medic',orig,token)
+    local fulltoken="medic/"..token
+    mappings[fulltoken]=orig
+    pingunames[#pingunames+1]=fulltoken
   end
 end
 
 ---]=]-------------
 
---[=[ Pyro -------
+---[=[ Pyro -------
 -- All 38 Pyro pack images are 512 square pixel images of the "png" extension.
 
 for token,ach in pairs(tf.pyro) do
@@ -73,23 +66,26 @@ for token,ach in pairs(tf.pyro) do
     orig=string.gsub(orig,"[^%w_']",'')
   end
 
-  --Rename the file at this position to its token
-  rename('pyro',orig,token)
+  local fulltoken="pyro/"..token
+  mappings[fulltoken]=orig
+  pingunames[#pingunames+1]=fulltoken
 end
 
 ---]=]-------------
 
---[=[ Heavy ------
+---[=[ Heavy ------
 -- All 38 Heavy pack images are 512 square pixel images of the "png" extension.
 
 for token in pairs(tf.heavy) do
   --All Heavy achievements are named with their full token.
-  rename('heavy','tf_heavy_'..token,token)
+    local fulltoken="heavy/"..token
+    mappings[fulltoken]="tf_heavy_"..token
+    pingunames[#pingunames+1]=fulltoken
 end
 
 ---]=]-------------
 
---[=[ Scout ------
+---[=[ Scout ------
 -- All 38 Scout pack images are of the "png" extension.
 -- Dimensions range from 512 pixels square to as large as 519x516 pixels
 -- ("side_retired.png").
@@ -119,13 +115,14 @@ for token, ach in pairs(tf.scout) do
 
   end
 
-  --Rename the file at this position to its token
-  rename('scout',orig,token)
+  local fulltoken="scout/"..token
+  mappings[fulltoken]=orig
+  pingunames[#pingunames+1]=fulltoken
 end
 
 ---]=]-------------
 
---[=[ Sniper -----
+---[=[ Sniper -----
 -- All 35 Sniper pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.sniper) do
@@ -155,14 +152,15 @@ for token, ach in pairs(tf.sniper) do
     --(like the token, but not the same).
     orig="tf_sniper_"..orig
 
-    --Rename the file at this position to its token
-    rename('sniper',orig,token)
+    local fulltoken="sniper/"..token
+    mappings[fulltoken]=orig
+    pingunames[#pingunames+1]=fulltoken
   end
 end
 
 ---]=]-------------
 
---[=[ Spy --------
+---[=[ Spy --------
 -- All 34 Spy pack images are 512 square pixel images of the "png" extension.
 
 for token, ach in pairs(tf.spy) do
@@ -190,88 +188,14 @@ for token, ach in pairs(tf.spy) do
     --(like the token, but not the same).
     orig="tf_spy_"..orig
 
-    --Rename the file at this position to its token
-    rename('spy',orig,token)
+    local fulltoken="spy/"..token
+    mappings[fulltoken]=orig
+    pingunames[#pingunames+1]=fulltoken
   end
 end
 
 ---]=]-------------
 
---[=[ Soldier ----
--- All 38 Soldier pack images are 512 square pixel images of the "jpg" extension.
+table.sort(pingunames,function(n,m) return string.lower(mappings[n])<string.lower(mappings[m]) end)
 
-do
-  --Soldier filenames are so inconsistent I'm just going to straight up map them.
-  local map={
-    kill_group_with_crocket = "trisplatteral_damage",
-    kill_two_during_rocket_jump = "death_from_above",
-    three_dominations = "dominator",
-    defend_medic = "war_crime_and_punnishment",
-    kill_taunt = "spray_of_defeat",
-    destroy_sentry_out_of_range = "guns_of_navar0wnedt",
-    kill_sniper_while_dead = "mutually_assured_destruction",
-    kill_airborne_target_while_airborne = "wings_of_glory",
-    kill_engy = "engineer_to_eternity",
-    nemesis_shovel_kill = "trench_warfare",
-    destroy_stickies = "bomb_squaddie",
-    crouch_rocket_jump = "where_eagles_dare",
-    buff_friends = "banner_of_brothers",
-    kill_twenty_from_above = "screamin",
-    shoot_mult_crits = "crockets_are_such_bs",
-    kill_defenseless = "geneva_contravention",
-    kill_on_fire = "semper_fry",
-    kill_five_stunned = "the_longest_gaze",
-    freezecam_gibs = "gora_gora_gora",
-    kill_spy_killer = "war_crime_spybunal",
-    defend_cap_thirty_times = "hamburger_hill",
-    gib_grind = "frags_of_our_fathers",
-    rj_equalizer_kill = "duty_bound",
-    buff_teammates = "the_boostie_boys",
-    kill_demoman_grind = "out_damned_scot",
-    kill_pyro = "backdraft_dodger",
-    equalizer_streak = "aint_got_time_to_bleed",
-    kill_with_equalizer_while_hurt = "near_death_expedience",
-    bounce_then_shotgun = "for_whom_the_shell_trolls",
-    kill_airborne_with_direct_hit = "death_from_below",
-    freezecam_taunt = "worth_a_thousand_wars",
-    duo_soldier_kills = "gomer_pileon", --most egregious break: Brothers in Harms
-    mvp = "metals_of_honor",
-    ride_the_cart = "ride_the_valkartie",
-    assist_medic_uber = "mashed",
-  }
-
-  for token in pairs(tf.soldier) do
-    local orig
-
-    --The Soldier pack uses the real full token name for milestone filenames
-    if string.find(token,"achieve_progress") then
-      orig=token
-    else
-      orig=map[token]
-    end
-
-    --Each filename is prefixed with tf_soldier_
-    --(like the token, but, except for milestones, not the same).
-    orig="tf_soldier_"..orig
-
-    --Rename the file at this position to its defname
-    rename('soldier',orig,token)
-  end
-end
-
----]=]-------------
-
----[=[ Demoman ----
--- All 38 Demoman pack images are 512 square pixel images of the "tga" extension.
-
-for token in pairs(tf.demoman) do
-  --Demoman milestones are prefixed with "tf_demo_" instead of "tf_demoman_".
-  if string.find(token,"achieve_progress") then
-    rename('demoman','tf_demo_'..token,token)
-  else
-    --All other Demoman achievements are named with their full token.
-    rename('demoman','tf_demoman_'..token,token)
-  end
-end
-
----]=]-------------
+return pingunames
