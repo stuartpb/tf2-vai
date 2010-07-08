@@ -261,7 +261,7 @@ end
 
 ---]=]-------------
 
----[=[ Demoman ----
+--[=[ Demoman ----
 -- All 38 Demoman pack images are 512 square pixel images of the "tga" extension.
 
 for token in pairs(tf.demoman) do
@@ -272,6 +272,37 @@ for token in pairs(tf.demoman) do
     --All other Demoman achievements are named with their full token.
     rename('demoman','tf_demoman_'..token,token)
   end
+end
+
+---]=]-------------
+
+---[=[ Engineer ---
+-- All 38 Engineer pack images are 512 square pixel images of the "jpg" extension.
+
+for token, ach in pairs(tf.engineer) do
+  local orig
+
+  --The Engineer pack uses a completely different rule for milestone filenames
+  if string.find(token,"achieve_progress") then
+    orig="engineer_"..string.match(token,"achieve_(progress%d)")
+  else
+    --all filenames are lowercase
+    orig=string.lower(ach.name)
+
+    --convert all spaces and hyphens to underscores
+    orig=string.gsub(orig,'[ %-]','_')
+
+    --Remove all characters that aren't alphanumeric or underscores
+    orig=string.gsub(orig,'[^%w_]','')
+
+    --Straight-Up Outright Typo Accomodation:
+    --The filename for "(Not So) Lonely are the Brave" begins "no_so".
+    orig=string.gsub(orig,'not_so_','no_so_')
+
+  end
+
+  --Rename the file at this position to its token
+  rename('engineer',orig,token)
 end
 
 ---]=]-------------
