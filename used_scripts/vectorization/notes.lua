@@ -350,5 +350,41 @@ tweaks={
     tf_demoman_killxsappingspies={
       merge="bottom-right corner"},
   },
+  engineer={
+    breaking_morant={
+      fill="Right jowl",
+      unite="Right jowl line"},
+    engineer_progress2={
+      zap="Bottom of middle balloon string",
+      separate="Left balloon neck"},
+    frontier_justice={
+      carve="hole in middle of spatter"},
+    git_along={
+      separate="Right switch",
+      merge="Middle of lines, left screw"},
+    no_so_lonely_are_the_brave={
+      separate="dispenser hand from edge"},
+    patent_protection={
+      colors=2},
+    pownd_on_the_range={
+      zap="Orange rim around left foot"},
+    search_engine={
+      create="Line down from hand",
+      separate="Most spots from lines"},
+    six_string_stinger={
+      separate="Top of goggles from brim",
+      zap="Left side of photo"},
+    the_extinugished_gentleman={
+      create="Middles of side handles",
+      smooth="Side of dispenser",
+      separate="Thing on tank"},
+    the_wrench_connection={
+      extend="left nostril"},
+    trade_secrets={
+      separate="Bottom corner of papers",
+      zap="orange around right white circle"},
+    unforgiven={
+      colors=2},
+  },
 }
 --CHECK SHAPE MODE IN EXPORT OPTIONS BEFORE SAVING!
