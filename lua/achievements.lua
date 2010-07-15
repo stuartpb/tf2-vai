@@ -661,7 +661,7 @@ tf={
       desc= "Rack up 5000 kills with your sentry guns."},
     sentry_avenges_you ={ name= "Frontier Justice",
       desc= "Have your sentry kill the enemy that just killed you within 10 seconds."},
-    freezecam_taunt ={ name= "Six-String Stringer",
+    freezecam_taunt ={ name= "Six-String Stinger",
       desc= "Provide an enemy player with a freeze cam of your guitar playing skills."},
     freezecam_sentry ={ name= "Uncivil Engineer",
       desc= "Provide an enemy player with a freeze cam of you and the sentry that just killed them."},
