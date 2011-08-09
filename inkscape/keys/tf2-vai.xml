@@ -3,8 +3,8 @@
 
 <!-- tf2-vai additions -->
 
-  <bind key="f" action="SelectionDiff" >
-  <bind key="F" action="SelectionDiff" >
+  <bind key="f" action="SelectionDiff" />
+  <bind key="F" action="SelectionDiff" />
 
   <!--
   Since S and D are already Select and Dropper in the default configuration,
