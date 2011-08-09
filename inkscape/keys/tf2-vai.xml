@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<keys name="TF2 Achievement Tweaking">
+
+<!-- tf2-vai additions -->
+
+  <bind key="f" action="SelectionDiff" >
+  <bind key="F" action="SelectionDiff" >
+
+  <!--
+  Since S and D are already Select and Dropper in the default configuration,
+  there actually aren't that many additions.
+  -->
+
+</keys>
