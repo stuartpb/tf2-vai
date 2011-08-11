@@ -1,34 +1,45 @@
 --encoding: utf-8
 --(Ü has to be explicitly defined so it can be converted)
 
---This file defines the original filename for each raster achievement
---icon as defined in the .zip files downloadable from
---http://www.teamfortress.com, as Valve packages their
---icon packs inconsistently, with different filename patterns for
---each pack (not even consistent in the same update or same pack,
---in the case of the Soldier and Demoman).
+--[[
+  This file defines the original filename for each raster achievement
+  icon as defined in the .zip files downloadable from http://www.tf2.com,
+  as Valve packages their icon packs inconsistently, with different filename
+  patterns for each pack (not even consistent in the same update or same
+  pack, in the case of the Soldier and Demoman).
+--]]
 
 --This gets the "tf" table of achievement names.
 local tf = require "lua.achievements"
 --This specifies the table that this module will return.
-local zipnames={}
+local zipnames = {}
+
+--localizing library functions
+local string = require 'string'
+local find = string.find
+local match = string.match
+local gsub = string.gsub
+local lower = string.lower
+local upper = string.upper
+local pairs = pairs
 
 ---[=[ Medic ------
 -- All 36 Medic pack images are 422 square pixel images of the "png" extension.
 do
-  zipnames.medic={}
-  for token,ach in pairs(tf.medic) do
+  zipnames.medic = {}
+  for token, ach in pairs(tf.medic) do
     --The Medic pack does not include milestone images
-    if not string.find(token,"achieve_progress") then
+    if not find(token, "achieve_progress") then
 
-      --CamelCase the achievement name, converting the few words starting with
-      --a lower-case letter to upper case (concordia, ibi, victoria)
-      local orig=string.gsub(ach.name,' (%l?)',string.upper)
+      --CamelCase the achievement name, converting the few words starting
+      --with a lower-case letter to upper case (concordia, ibi, victoria)
+      local orig = gsub(ach.name, ' (%l?)', upper)
 
-      --Remove all non-alphanumeric characters (a couple apostrophes and a comma)
-      orig=string.gsub(orig,'%W','')
+      --Remove all non-alphanumeric characters
+      --(a couple apostrophes and a comma)
+      orig = gsub(orig, '%W', '')
 
-      zipnames.medic[token]=orig
+      zipnames.medic[token] = orig
     end
   end
 end
@@ -37,32 +48,32 @@ end
 ---[=[ Pyro -------
 -- All 38 Pyro pack images are 512 square pixel images of the "png" extension.
 do
-  zipnames.pyro={}
-  for token,ach in pairs(tf.pyro) do
+  zipnames.pyro = {}
+  for token, ach in pairs(tf.pyro) do
     local orig
 
     --The Pyro pack uses a completely different rule for milestone filenames
-    if string.find(token,"achieve_progress") then
-      orig="pyro_"..token
+    if find(token, "achieve_progress") then
+      orig = "pyro_" .. token
     else
       --The filename for the all-uppercase-letters "OMGWTFBBQ" is uppercase
-      if not string.find(ach.name,"%U") then
-        orig=ach.name
+      if not find(ach.name, "%U") then
+        orig = ach.name
       else
         --all other filenames are lowercase
-        orig=string.lower(ach.name)
+        orig = lower(ach.name)
       end
 
-      --convert all spaces to underscores
-      orig=string.gsub(orig,' ','_')
+      -- convert all spaces to underscores
+      orig = gsub(orig, ' ', '_')
 
-      --Remove all characters that aren't alphanumeric, underscores,
-      --or an apostrophe (in "makin'_bacon")
-      --(basically the question mark in "Got A Light?")
-      orig=string.gsub(orig,"[^%w_']",'')
+      --Remove all characters that are invalid in filenames
+      --(remove the question mark in "Got A Light?",
+      -- but not the apostrophe in "makin'_bacon")
+      orig = gsub(orig, '[^%\\%/%:%*%?%\"%<%>%|]', '')
     end
 
-    zipnames.pyro[token]=orig
+    zipnames.pyro[token] = orig
   end
 end
 ---]=]-------------
@@ -70,10 +81,10 @@ end
 ---[=[ Heavy ------
 -- All 38 Heavy pack images are 512 square pixel images of the "png" extension.
 do
-  zipnames.heavy={}
+  zipnames.heavy = {}
   for token in pairs(tf.heavy) do
     --All Heavy achievements are named with their full token.
-    zipnames.heavy[token]='tf_heavy_'..token
+    zipnames.heavy[token] = 'tf_heavy_' .. token
   end
 end
 ---]=]-------------
@@ -88,28 +99,28 @@ do
     local orig
 
     --The Scout pack uses full tokens for milestone filenames
-    if string.find(token,"achieve_progress") then
-      orig="tf_scout_"..token
+    if find(token, "achieve_progress") then
+      orig = "tf_scout_" .. token
     else
       --all filenames are lowercase
-      orig=string.lower(ach.name)
+      orig = lower(ach.name)
 
       --convert all spaces and hyphens to underscores
-      orig=string.gsub(orig,'[ %-]','_')
+      orig = gsub(orig, '[ %-]', '_')
 
       --Remove all characters that aren't alphanumeric or underscores
       --("I'm Bat Man" loses its apostrophe, lots of other punctuation)
-      orig=string.gsub(orig,'[^%w_]','')
+      orig = gsub(orig, '[^%w_]', '')
 
       --Straight-Up Outright Typo Accomodation:
       --"Beanball" has 3 'l's in its filename ("beanballl").
-      orig=string.gsub(orig,'beanball','beanballl')
+      orig = gsub(orig, 'beanball', 'beanballl')
       --In "Belittled Beleaguer", "Beleaguer" is misspelled "beleauger".
-      orig=string.gsub(orig,'beleaguer','beleauger')
+      orig = gsub(orig, 'beleaguer', 'beleauger')
 
     end
 
-    zipnames.scout[token]=orig
+    zipnames.scout[token] = orig
   end
 end
 ---]=]-------------
@@ -121,32 +132,33 @@ do
   for token, ach in pairs(tf.sniper) do
 
     --The Sniper pack does not include milestone images
-    if not string.find(token,"achieve_progress") then
+    if not find(token, "achieve_progress") then
 
       --all filenames are lowercase
-      local orig=string.lower(
-        --Also, the 'Ü' in "Überectomy" is converted to a plain 'u'.
-        string.gsub(ach.name,'Ü','u'))
+      local orig = lower(ach.name)
+      --Also, the 'Ü' in "Überectomy" is converted to a plain 'u'.
+      orig = gsub(orig, 'Ü', 'u')
 
       --convert all spaces to underscores
-      orig=string.gsub(orig,' ','_')
+      orig = gsub(orig, ' ', '_')
 
-      --"De-sentry-lized" keeps its hyphens
-      if string.find(orig,"[^%w%-]") then
-        --but "Self-destruct Sequence" does not
+      --If there are hyphens mixed with spaces
+      --(as "De-sentry-lized" keeps its hyphens)
+      if find(orig, "[^%w%-]") then
         --Remove all characters that aren't alphanumeric or underscores
-        orig=string.gsub(orig,"[^%w_]",'')
+        --(as "Self-destruct Sequence" becomes "selfdestruct_sequence")
+        orig = gsub(orig, "[^%w_]", '')
       end
 
       --Straight-Up Outright Typo Accomodation:
       --The filename for "Dropped Dead" is "drop_dead".
-      orig=string.gsub(orig,'dropped_dead','drop_dead')
+      orig = gsub(orig, 'dropped_dead', 'drop_dead')
 
       --Each filename is prefixed with tf_sniper_
       --(like the token, but not the same).
-      orig="tf_sniper_"..orig
+      orig = "tf_sniper_" .. orig
 
-      zipnames.sniper[token]=orig
+      zipnames.sniper[token] = orig
     end
   end
 end
@@ -159,30 +171,29 @@ do
   for token, ach in pairs(tf.spy) do
 
     --The Spy pack does not include milestone images
-    if not string.find(token,"achieve_progress") then
+    if not find(token, "achieve_progress") then
 
       --all filenames are lowercase
-      local orig=string.lower(ach.name)
+      local orig = lower(ach.name)
 
       --convert all spaces to underscores
-      orig=string.gsub(orig,' ','_')
+      orig = gsub(orig, ' ', '_')
 
       --Remove all characters that aren't alphanumeric or underscores
-      orig=string.gsub(orig,"[^%w_]",'')
+      orig = gsub(orig, "[^%w_]", '')
 
       --Straight-Up Outright Typo Accomodation:
       --"Triplecrossed"'s filename is "triple_crossed".
-      orig=string.gsub(orig,'triplecrossed','triple_crossed')
+      orig = gsub(orig,'triplecrossed', 'triple_crossed')
       --For some reason, Eyes in "tf_spy_for_your_Eyes_only" is capitalized.
-      --(Not that Windows would care, but Linux would, and dammit,
-      --this script is portable!)
-      orig=string.gsub(orig,'eyes','Eyes')
+      --Adjust accordingly to accomodate case sensitivity.
+      orig = gsub(orig,'eyes', 'Eyes')
 
       --Each filename is prefixed with tf_spy_
       --(like the token, but not the same).
-      orig="tf_spy_"..orig
+      orig = "tf_spy_" .. orig
 
-      zipnames.spy[token]=orig
+      zipnames.spy[token] = orig
     end
   end
 end
@@ -191,10 +202,10 @@ end
 ---[=[ Soldier ----
 -- All 38 Soldier pack images are 512 square pixel images of the "jpg" extension.
 do
-  zipnames.soldier={}
+  zipnames.soldier = {}
 
   --Soldier filenames are so inconsistent I'm just going to straight up list them.
-  local map={
+  local map = {
     kill_group_with_crocket = "trisplatteral_damage",
     kill_two_during_rocket_jump = "death_from_above",
     three_dominations = "dominator",
@@ -236,15 +247,15 @@ do
     local orig
 
     --The Soldier pack uses the real full token name for milestone filenames
-    if string.find(token,"achieve_progress") then orig=token
+    if find(token, "achieve_progress") then orig = token
     --everything else uses the names specified in the map above
-    else orig=map[token] end
+    else orig = map[token] end
 
     --Each filename is prefixed with tf_soldier_
     --(like the token, but, except for milestones, not the same).
-    orig="tf_soldier_"..orig
+    orig = "tf_soldier_" .. orig
 
-    zipnames.soldier[token]=orig
+    zipnames.soldier[token] = orig
   end
 end
 ---]=]-------------
@@ -252,14 +263,14 @@ end
 ---[=[ Demoman ----
 -- All 38 Demoman pack images are 512 square pixel images of the "tga" extension.
 do
-  zipnames.demoman={}
+  zipnames.demoman = {}
   for token in pairs(tf.demoman) do
     --Demoman milestones are prefixed with "tf_demo_" instead of "tf_demoman_".
-    if string.find(token,"achieve_progress") then
-      zipnames.demoman[token]='tf_demo_'..token
+    if find(token, "achieve_progress") then
+      zipnames.demoman[token] = 'tf_demo_' .. token
     else
       --All other Demoman achievements are named with their full token.
-      zipnames.demoman[token]='tf_demoman_'..token
+      zipnames.demoman[token] = 'tf_demoman_' .. token
     end
   end
 end
@@ -268,32 +279,34 @@ end
 ---[=[ Engineer ---
 -- All 38 Engineer pack images are 512 square pixel images of the "jpg" extension.
 do
-  zipnames.engineer={}
+  zipnames.engineer = {}
   for token, ach in pairs(tf.engineer) do
     local orig
 
     --The Engineer pack uses a completely different rule for milestone filenames
     if string.find(token,"achieve_progress") then
-      orig="engineer_"..string.match(token,"achieve_(progress%d)")
+      orig = "engineer_" .. match(token, "achieve_(progress%d)")
     else
       --all filenames are lowercase
-      orig=string.lower(ach.name)
+      orig = lower(ach.name)
 
       --convert all spaces and hyphens to underscores
-      orig=string.gsub(orig,'[ %-]','_')
+      orig = gsub(orig, '[ %-]', '_')
 
       --Remove all characters that aren't alphanumeric or underscores
-      orig=string.gsub(orig,'[^%w_]','')
+      orig = gsub(orig, '[^%w_]', '')
 
       --Straight-Up Outright Typo Accomodation:
       --The filename for "(Not So) Lonely are the Brave" begins "no_so".
-      orig=string.gsub(orig,'not_so_','no_so_')
+      orig = gsub(orig, 'not_so_', 'no_so_')
 
-      --Also, "Git Along!" was renamed to "Get Along!" somewhere between Tuesday and Thursday.
-      orig=string.gsub(orig,'get_along','git_along')
+      --Also, "Git Along!" was renamed to "Get Along!" somewhere between
+      --the Tuesday before the update when the achievement names were revealed
+      --and the Thursday when the update was released.
+      orig = gsub(orig, 'get_along', 'git_along')
     end
 
-    zipnames.engineer[token]=orig
+    zipnames.engineer[token] = orig
   end
 end
 ---]=]-------------

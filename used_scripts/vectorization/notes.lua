@@ -1,3 +1,5 @@
+--This file lists tweaks made to minor details in VectorMagic
+--between importing the raster image and exporting the SVG.
 
 tweaks={
   medic={
