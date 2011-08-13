@@ -5,6 +5,8 @@
 
   <bind key="f" action="SelectionDiff" />
   <bind key="F" action="SelectionDiff" />
+  <bind key="c" action="SelectionUnion" /> <!-- clobbers calligraphic tool -->
+  <bind key="C" action="SelectionUnion" />
 
   <!--
   Since S and D are already Select and Dropper in the default configuration,
