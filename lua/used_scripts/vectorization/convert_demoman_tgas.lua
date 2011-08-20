@@ -1,4 +1,4 @@
-require "data.achievements"
+local tf = require "lua.achievements"
 require "imlua"
 
 function convert(filename)
