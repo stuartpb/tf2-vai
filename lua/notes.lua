@@ -458,15 +458,6 @@ return {
     ]=],
   },
   sniper = {
-    achieve_progress1 = [=[
-
-    ]=],
-    achieve_progress2 = [=[
-
-    ]=],
-    achieve_progress3 = [=[
-
-    ]=],
     bow_kill_flagcarrier = [=[
 
     ]=],
@@ -574,15 +565,6 @@ return {
     ]=],
   },
   spy = {
-    achieve_progress1 = [=[
-
-    ]=],
-    achieve_progress2 = [=[
-
-    ]=],
-    achieve_progress3 = [=[
-
-    ]=],
     ambassador_grind = [=[
       [noalpha]
     ]=],
