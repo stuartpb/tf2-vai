@@ -34,7 +34,7 @@ return {
 
     ]=],
     bonesaw_spy_callers = [=[
-
+      [noalpha] NIGHTMARE MODE
     ]=],
     charge_blocker = [=[
 
@@ -251,7 +251,7 @@ return {
 
     ]=],
     clear_stickybombs = [=[
-
+      [rerun] demoman/destroy_x_stickybombs (Robbed Royal)
     ]=],
     damage_taken = [=[
 
@@ -831,7 +831,7 @@ return {
       [rerun] scout/destroy_buildings_being_built (If You Build It)
     ]=],
     destroy_x_stickybombs = [=[
-
+      [rerun] heavy/clear_stickybombs (0wn the Means of Production)
     ]=],
     dominate_three_engineers = [=[
 
