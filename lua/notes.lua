@@ -507,7 +507,7 @@ return {
 
     ]=],
     jarate_extinguish = [=[
-      [noalpha]
+      [noalpha] A lot of problems from the raster version of this (brown artifacts, gaps, the jar's contents partially overlap the glare).
     ]=],
     jarate_group = [=[
 
@@ -673,7 +673,7 @@ return {
 
     ]=],
     achieve_progress2 = [=[
-      This is the icon for Scout, not Soldier (baseballs on the balloons). This is a fault in the upstream zipball.
+      [wtf] This is the icon for Scout, not Soldier (baseballs on the balloons). This is a fault in the upstream zipball.
     ]=],
     achieve_progress3 = [=[
 
