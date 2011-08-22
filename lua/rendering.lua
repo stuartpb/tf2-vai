@@ -9,7 +9,7 @@ local tf = require "lua.achievements"
 --The 'inkscape' module of this project, for running
 --Inkscape commands, provides this function.
 
-local inkscape = require "inkscape"
+local inkscape = require "lua.inkscape"
 local render_svg = inkscape.render
 
 --Table for module to return.
