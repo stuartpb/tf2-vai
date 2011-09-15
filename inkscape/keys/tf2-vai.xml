@@ -3,10 +3,14 @@
 
 <!-- tf2-vai additions -->
 
-  <bind key="f" action="SelectionDiff" />
+  <bind key="f" action="SelectionDiff" /> <!-- free -->
   <bind key="F" action="SelectionDiff" />
   <bind key="c" action="SelectionUnion" /> <!-- clobbers calligraphic tool -->
   <bind key="C" action="SelectionUnion" />
+  <bind key="t" action="LayerMoveToNext" /> <!-- clobbers text tool -->
+  <bind key="T" action="LayerMoveToNext" />
+  <bind key="g" action="LayerMoveToPrev" /> <!-- clobbers gradient tool -->
+  <bind key="G" action="LayerMoveToPrev" />
 
   <!--
   Since S and D are already Select and Dropper in the default configuration,
